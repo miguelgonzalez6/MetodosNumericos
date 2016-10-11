@@ -1,4 +1,4 @@
-function [raiz, matrizResultados] = newtonRaphson(func, dfunc, xn, ep, maxit)
+function [raiz, fx, matrizResultados] = newtonRaphson(func, dfunc, xn, ep, maxit)
 % Metodo de newtonRaphson
 % Entrada:
 %   func = nombre de la función
@@ -9,6 +9,7 @@ function [raiz, matrizResultados] = newtonRaphson(func, dfunc, xn, ep, maxit)
 %   variable = esta es la variable a utilizar para la funcion
 % Salida:
 %   raíz = el valor de la raíz 
+%   fx = el valor de la funcion en la raíz
 %   matrizResultados = es la matriz de los resultados obtenidos para
 %   mostrarla en la tabla gráfica
 
@@ -16,7 +17,7 @@ function [raiz, matrizResultados] = newtonRaphson(func, dfunc, xn, ep, maxit)
 if isempty(func), error('la función esta vacia') ,end
 func = inline(func);
 %para validar la funcion
-func(1)
+func(1);
 
 dfunc = inline(dfunc);
 if dfunc(1) == 0, error('variable invalida'),end
@@ -50,6 +51,7 @@ while (1)
     if ea <= ep || iter >= maxit, break, end
 end
 raiz = xn;
+fx = func(raiz);
 end
 
 

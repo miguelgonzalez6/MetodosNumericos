@@ -105,7 +105,13 @@ maxit = str2double(get(handles.iteracionesTexto,'string'));
 
 try
     %Se llama a la función que resuelve el método y le introducimos los datos
-    [raiz , matrizResultados] = newtonRaphson(funcionText, dFuncionText, xn, ep, maxit);
+    [raiz, fx, matrizResultados] = newtonRaphson(funcionText, dFuncionText, xn, ep, maxit);
+    if round( abs(fx) ) > 0
+        %especificar que la función no tiene resultado
+        set(handles.raizTexto,'String','No tiene');
+        %Lanzar el error para que no continue
+        error('La función no tiene solución u.u');
+    end
     %Si todo esta bien muestro la derivada de la función
     set(handles.dFuncionTexto,'string', dFuncionText); 
     %Meter los datos a la tabla
@@ -145,7 +151,8 @@ set(handles.eaTexto,'string','');
 set(handles.iteracionesTexto,'string','');
 set(handles.raizTexto,'string','');
 set(handles.tabla,'data',[]);
-ezplot('');
+%Limpiamos la grafica
+cla reset;
 
 
 

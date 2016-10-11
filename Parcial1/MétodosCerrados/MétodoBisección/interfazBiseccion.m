@@ -264,4 +264,5 @@ set(handles.eaTexto,'string','');
 set(handles.iteracionesTexto,'string','');
 set(handles.raizTexto,'string','');
 set(handles.tabla,'data',[]);
-ezplot('');
+%Limpiamos la grafica
+cla reset;
