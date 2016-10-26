@@ -22,7 +22,7 @@ function varargout = interfazPrincipal(varargin)
 
 % Edit the above text to modify the response to help interfazPrincipal
 
-% Last Modified by GUIDE v2.5 05-Oct-2016 15:43:20
+% Last Modified by GUIDE v2.5 25-Oct-2016 19:49:20
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -135,3 +135,48 @@ end
 
 % --- Executes when figure1 is resized.
 function figure1_SizeChangedFcn(hObject, eventdata, handles)
+
+
+% --- Executes on selection change in SistemasEcuacionesPopUpMenu.
+function SistemasEcuacionesPopUpMenu_Callback(hObject, eventdata, handles)
+opcionElegida = get(hObject, 'Value');
+
+switch opcionElegida
+    %Esta es la opción del método de Gauss
+    case 2
+        close;
+        InterfazGauss;
+    %Esta es la opción del método de Gauss-Jordan 
+    case 3
+        close;
+        InterfazGJ;
+    %Esta es la opción del método de Montante
+    case 4
+        close;
+        InterfazMontana;
+    %Esta es la opción del método de Cramer
+    case 5
+        %close;
+        %InterfazCramer;
+    %Esta es la opción del método de Gauss-Seidel
+    case 6
+        %close;
+        %InterfazGSeidel;
+    %Esta es la opción del método de Gauss-Jacobi 
+    case 7
+        %close;
+        %InterfazGJacobi;
+end
+
+
+% --- Executes during object creation, after setting all properties.
+function SistemasEcuacionesPopUpMenu_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to SistemasEcuacionesPopUpMenu (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: popupmenu controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
