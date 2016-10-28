@@ -108,10 +108,10 @@ end
 function botonGenerar_Callback(hObject, eventdata, handles)
 m=str2double(get(handles.incognitasTexto,'String'));
 n=m+1;
-table1 = zeros(m,n);
+table1 = zeros(m , n);
 set(handles.matriz,'data',table1);
 set(handles.matriz,'ColumnEditable', [true true true true true true true true true true true true true true true true true true true true true true true true]);
-set(handles.Matriz,'visible','on');
+set(handles.matriz,'visible','on');
 
 
 % --- Executes on button press in botonLimpiar.
@@ -146,12 +146,29 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 
-% --- Executes on button press in botonResolver.
+% --- se ejecuta cuando se presiona el boton resolver
 function botonResolver_Callback(hObject, eventdata, handles)
-% hObject    handle to botonResolver (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
+%Obtener la matriz de la interfaz
+data = get(handles.matriz,'data');
 
+resultados = [];
+try
+    %Resolver llamando la función de gauss
+    resultados = gauss(data);
+catch e
+    set(handles.errorTexto,'String',e.message);
+end
+
+%Poner los resultados en la interfaz
+resultadosString = [];
+[n, m] = size(resultados);
+
+for i = 1 : n
+    resultadosString = [resultadosString ; 'x' num2str(i) '=  '];
+end
+
+%mostrarlo en la grafica
+set(handles.resultado,'string',[resultadosString num2str(resultados)]);
 
 % --- Executes when user attempts to close figure1.
 function figure1_CloseRequestFcn(hObject, eventdata, handles)
