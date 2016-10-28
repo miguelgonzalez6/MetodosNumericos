@@ -9,14 +9,14 @@ function x = Jacobi( matriz,ep,maxit)
 
 %Aquí se hace el calculo del error relativo 
 %Sino se dan cifras por default se dan 5 y el error relativo es: 0.0005
-if isnan(ep) 
+if isempty(ep) 
     ep = 0.0005; 
 else
     ep = (0.5*10^(2-ep));
 end
 %Sino se le da un número  maximo de iteración el número de iteraciones por
 %defaul es 50 iteraciones
-if isnan(maxit), maxit = 50; end
+if isempty(maxit), maxit = 50; end
 
 %Sacar el tamaño de la matriz total para pasar los datos requeridos
 [m, n] = size(matriz);
@@ -55,18 +55,6 @@ while (1)
     end
     aux = x;
     iter = iter+1;
-    if max(ea) <= ep || iter >= maxit, break, end
+    if max(ea) <= ep | iter >= maxit, break, end
 end
-
-%Comprobar si tiene solucion
-% for i = 1:n
-%     resultado1 = A(i,1:n) * x;
-%     resultado2 = double(b(i));
-%     res = resultado1 - resultado2;
-%     if round(res) > 0
-%         error('Esta ecuación no tiene solución');
-%     end
-% end
-
-
 
