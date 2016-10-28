@@ -156,16 +156,16 @@ switch opcionElegida
         InterfazMontana;
     %Esta es la opción del método de Cramer
     case 5
-        %close;
-        %InterfazCramer;
+        close;
+        InterfazCramer;
     %Esta es la opción del método de Gauss-Seidel
     case 6
-        %close;
-        %InterfazGSeidel;
+        close;
+        InterfazGS;
     %Esta es la opción del método de Gauss-Jacobi 
     case 7
-        %close;
-        %InterfazGJacobi;
+        close;
+        InterfazGJacobi;
 end
 
 
