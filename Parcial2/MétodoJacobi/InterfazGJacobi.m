@@ -22,7 +22,7 @@ function varargout = InterfazGJacobi(varargin)
 
 % Edit the above text to modify the response to help InterfazGJacobi
 
-% Last Modified by GUIDE v2.5 28-Oct-2016 07:56:04
+% Last Modified by GUIDE v2.5 28-Oct-2016 11:41:52
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -107,10 +107,33 @@ end
 
 % --- Executes on button press in botonResolver.
 function botonResolver_Callback(hObject, eventdata, handles)
-% hObject    handle to botonResolver (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
+%Obtener la matriz de la interfaz
+data = get(handles.matriz,'data');
+%Obtener el número de cifras significativas
+cifras = get(handles.cifrasSignificativasText,'string');
+%Obtener el número maximo de iteraciones
+maxit = get(handles.iteracionesText,'string');
 
+resultados = [];
+try
+    %Resolver llamando a la función
+    resultados = Jacobi(data, cifras, maxit);
+catch e
+    set(handles.errorTexto,'String',e.message);
+end
+
+%Poner los resultados en la interfaz
+resultadosString = [];
+[n, m] = size(resultados);
+
+for i = 1 : n
+    resultadosString = [resultadosString ; 'x' num2str(i) '=  '];
+end
+
+%mostrarlo en la grafica
+set(handles.resultado,'string',[resultadosString num2str(resultados)]);
+%Quitar los errores si hubo
+set(handles.errorTexto,'string','');
 
 
 function incognitasTexto_Callback(hObject, eventdata, handles)
@@ -142,7 +165,7 @@ n=m+1;
 table1 = zeros(m,n);
 set(handles.matriz,'data',table1);
 set(handles.matriz,'ColumnEditable', [true true true true true true true true true true true true true true true true true true true true true true true true]);
-set(handles.Matriz,'visible','on');
+set(handles.matriz,'visible','on');
 
 
 % --- Executes on button press in botonLimpiar.
@@ -151,6 +174,8 @@ set(handles.incognitasTexto,'string','');
 set(handles.errorTexto,'string','');
 set(handles.resultado,'string','');
 set(handles.matriz,'data',[]);
+set(handles.cifrasSignificativasText,'string','');
+set(handles.iteracionesText,'string','');
 
 
 % --- Executes when user attempts to close figure1.
@@ -162,3 +187,49 @@ function figure1_CloseRequestFcn(hObject, eventdata, handles)
 % Hint: delete(hObject) closes the figure
 delete(hObject);
 interfazPrincipal;
+
+
+
+function cifrasSignificativasText_Callback(hObject, eventdata, handles)
+% hObject    handle to cifrasSignificativasText (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of cifrasSignificativasText as text
+%        str2double(get(hObject,'String')) returns contents of cifrasSignificativasText as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function cifrasSignificativasText_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to cifrasSignificativasText (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function iteracionesText_Callback(hObject, eventdata, handles)
+% hObject    handle to iteracionesText (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of iteracionesText as text
+%        str2double(get(hObject,'String')) returns contents of iteracionesText as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function iteracionesText_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to iteracionesText (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
