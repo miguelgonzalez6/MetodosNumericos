@@ -104,12 +104,30 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 
-% --- Executes on button press in botonResolver.
+% --- se ejecuta cuando se presiona el boton resolver
 function botonResolver_Callback(hObject, eventdata, handles)
-% hObject    handle to botonResolver (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
+%Obtener la matriz de la interfaz
+data = get(handles.matriz,'data');
 
+resultados = [];
+try
+    %Resolver llamando la función de gauss
+    resultados = Montante(data);
+catch e
+    set(handles.errorTexto,'String',e.message);
+end
+
+%Poner los resultados en la interfaz
+resultadosString = [];
+resultados = resultados';
+[n, m] = size(resultados);  
+
+for i = 1 : n
+    resultadosString = [resultadosString ; 'x' num2str(i) '=  '];
+end
+
+%mostrarlo en la grafica
+set(handles.resultado,'string',[resultadosString num2str(resultados)]);
 
 
 function incognitasTexto_Callback(hObject, eventdata, handles)

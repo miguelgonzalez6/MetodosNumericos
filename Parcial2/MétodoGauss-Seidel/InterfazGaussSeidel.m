@@ -76,9 +76,10 @@ varargout{1} = handles.output;
 
 % --- Executes on button press in botonAtras.
 function botonAtras_Callback(hObject, eventdata, handles)
-% hObject    handle to botonAtras (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
+%Cuando se da el boton de atras se cierra la ventana actual y se abre la
+%ventana principal
+close;
+interfazPrincipal;
 
 
 

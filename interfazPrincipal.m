@@ -161,7 +161,7 @@ switch opcionElegida
     %Esta es la opción del método de Gauss-Seidel
     case 6
         close;
-        InterfazGS;
+        InterfazGaussSeidel;
     %Esta es la opción del método de Gauss-Jacobi 
     case 7
         close;
