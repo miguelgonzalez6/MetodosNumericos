@@ -3,8 +3,8 @@ function x = crammer(a)
 %CRAMER	Solve linear system by Cramer's Rule.
 %   Detailed explanation goes here
 
-%Sacar los datos requeridos
-[m,n] = size(a);
+    %Sacar los datos requeridos
+    [m,n] = size(a);
         for j=1:m-1
             for z=2:m
                 if a(j,j)==0

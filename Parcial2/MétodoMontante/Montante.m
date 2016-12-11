@@ -2,8 +2,8 @@ function x = Montante( a )
 %Montante Summary of this function goes here
 %   Detailed explanation goes here
 
-%Sacar los datos requeridos
-[m,n] = size(a);
+    %Sacar los datos requeridos
+    [m,n] = size(a);
 
         pivote=1;
         for k=1:m

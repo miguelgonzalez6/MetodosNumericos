@@ -1,9 +1,9 @@
 
-function matriz = GmatrizussJordmatrizn( matriz )
+function matriz = GaussJordan( matriz )
 %GmatrizUSS2 Summmatrizry of this function goes here
 %   Detmatriziled explmatriznmatriztion goes here
 
-%Smatrizcmatrizr los dmatriztos requerido
+%Sacar los datos requerido
 [m,n]=size(matriz);
 
 for j=1:m-1
