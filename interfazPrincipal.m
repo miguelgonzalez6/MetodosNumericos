@@ -22,7 +22,7 @@ function varargout = interfazPrincipal(varargin)
 
 % Edit the above text to modify the response to help interfazPrincipal
 
-% Last Modified by GUIDE v2.5 25-Oct-2016 19:49:20
+% Last Modified by GUIDE v2.5 11-Dec-2016 18:33:41
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -172,6 +172,43 @@ end
 % --- Executes during object creation, after setting all properties.
 function SistemasEcuacionesPopUpMenu_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to SistemasEcuacionesPopUpMenu (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: popupmenu controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+% --- Executes on selection change in InterpolacionYAjuestesDeFuncionesPopUpMenu.
+function InterpolacionYAjuestesDeFuncionesPopUpMenu_Callback(hObject, eventdata, handles)
+opcionElegida = get(hObject, 'Value');
+
+switch opcionElegida
+    %Esta es la opción del método de Minimos Cuadrados
+    case 2
+        close;
+        interfazMinimosCuadrados;
+    %Esta es la opción del metodo de exponencial
+    case 3
+        close;
+        interfazModeloExponencial;
+    %Esta es la opción del método de interpolación de Newton
+    case 4
+        close;
+        interfazInterpolacionNewton;
+    %Esta es la opción del método de Lagrange
+    case 5
+        close;
+        interfazLagrange;
+end
+
+
+% --- Executes during object creation, after setting all properties.
+function InterpolacionYAjuestesDeFuncionesPopUpMenu_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to InterpolacionYAjuestesDeFuncionesPopUpMenu (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
