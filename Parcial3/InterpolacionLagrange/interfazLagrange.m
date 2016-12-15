@@ -153,7 +153,7 @@ function botonGenerar_Callback(hObject, eventdata, handles)
 m=str2double(get(handles.muestrasTexto,'String'));
 table1 = zeros(m , 2);
 set(handles.matriz,'data',table1);
-set(handles.matriz,'ColumnName',{'xi','yi'});
+set(handles.matriz,'ColumnName',{'xn','f(xn)'});
 set(handles.matriz,'ColumnEditable', [true true true true true true true true true true true true true true true true true true true true true true true true]);
 set(handles.matriz,'visible', 'on');
 

@@ -113,8 +113,8 @@ data = get(handles.matriz,'data');
 
 try
     
-    %ec = minimosCuadrados(data);
-    set(handles.resultado,'string',ec);
+    ec = minimosCuadrados(data);
+    set(handles.resultado, 'string',ec);
     
 catch ME
       set(handles.errorTexto, 'string',ME.message);

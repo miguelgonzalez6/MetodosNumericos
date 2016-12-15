@@ -112,10 +112,12 @@ function botonResolver_Callback(hObject, eventdata, handles)
 data = get(handles.matriz,'data');
 
 try
+    %obtener los datos de la tabla
+    x = data(:,1)';
+    f = data(:,2)';
     
-    %ec = minimosCuadrados(data);
-    set(handles.resultado,'string',ec);
-    
+    [c, ec] = interpolacionNewton(x,f);
+    set(handles.resultado,'string',char(ec));
 catch ME
       set(handles.errorTexto, 'string',ME.message);
 end
@@ -149,7 +151,7 @@ function botonGenerar_Callback(hObject, eventdata, handles)
 m=str2double(get(handles.muestrasTexto,'String'));
 table1 = zeros(m , 2);
 set(handles.matriz,'data',table1);
-set(handles.matriz,'ColumnName',{'xi','yi'});
+set(handles.matriz,'ColumnName',{'xn','f[xn]'});
 set(handles.matriz,'ColumnEditable', [true true true true true true true true true true true true true true true true true true true true true true true true]);
 set(handles.matriz,'visible', 'on');
 
